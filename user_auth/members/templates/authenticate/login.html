@@ -13,21 +13,20 @@
     {% if messages %}
         {% for message in messages %}  <!-- Fixed variable name -->
             <div class="alert alert-danger">{{ message }}</div>
+            
         {% endfor %}
     {% endif %}
 
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %} 
+    <form action="{% url 'login' %}" method="POST" novalidate>
+        {% csrf_token %}
         <div class="mb-3">
             <label class="form-label">Username</label>
-            <input type="text" class="form-control" name="username" required> <!-- Added required -->
+            <input type="text" class="form-control" name="username" required>
         </div>
-        
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" required> <!-- Added required -->
+            <input type="password" class="form-control" name="password" required>
         </div>
-
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
