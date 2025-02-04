@@ -37,3 +37,7 @@ def login_view(request):
         else:
             messages.info(request,"username or password is incorrect")
     return render(request, 'user/login.html', {})
+
+def logout_view(request):
+    logout(request)
+    return redirect('register')
