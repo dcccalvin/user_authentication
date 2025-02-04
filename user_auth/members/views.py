@@ -3,7 +3,10 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='login')
 def home(request):
     return render(request, 'others/home.html', {})
 
