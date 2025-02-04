@@ -7,51 +7,54 @@
     <title>Register</title>
 </head>
 <body>
-    {% comment %} <h1>Register</h1>
-    <form>
+    <h1>Register</h1>
+    <form method="POST" action="" >
+        {% csrf_token %}
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <label for="exampleInputEmail1" class="form-label">{{form.username.label}}</label>
+            {% comment %} {{form.username}} {% endcomment %}
+            <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}" required>
+            <div id="emailHelp" class="form-text">We advice you use your real name</div>
           </div>
+
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <label for="exampleInputEmail1" class="form-label">{{form.email.label}}</label>
+          {{form.email}}
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         
 
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <label for="exampleInputPassword1" class="form-label">{{form.password1.label}}</label>
+          {{form.password1}}
         </div>
 
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="exampleInputPassword1" class="form-label">{{form.password2.label}}</label>
+            {{form.password2}}
           </div>
         
         
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form> {% endcomment %}
-    <form method="POST" action="" >
+        <button type="submit" class="btn btn-primary" name="create user" >submit</button>
+      </form> 
+    {% comment %} <form method="POST" action="" >
         {% csrf_token %}
-        {{form.username.label}}
-        {{form.username}}
+        
+        
         
 
-        {{form.email.label}}
-        {{form.email}}
+        
+        
 
-        {{form.password1.label}}
-        {{form.password1}}
+        
+        
 
-        {{form.password2.label}}
-        {{form.password2}}
+        
+        
 
 
         
         <input type="submit" name="create user">
-    </form>
+    </form> {% endcomment %}
 </body>
 </html>
