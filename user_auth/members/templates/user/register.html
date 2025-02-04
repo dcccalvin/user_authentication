@@ -10,9 +10,24 @@
     <h1>Register</h1>
     <form method="POST" action="" >
         {% csrf_token %}
+
+        {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">{{form.username.label}}</label>
-            {% comment %} {{form.username}} {% endcomment %}
+            
             <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}" required>
             <div id="emailHelp" class="form-text">We advice you use your real name</div>
           </div>
@@ -38,6 +53,10 @@
         
         <button type="submit" class="btn btn-primary" name="create user" >submit</button>
       </form> 
+
+      
+
+      <p>Already have an account <a href="{% url "login" %} ">Login</a></p>
 
 </body>
 </html>
